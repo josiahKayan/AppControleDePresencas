@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ljosias.appcontroledepresencas.model.Usuario;
+import com.example.ljosias.appcontroledepresencas.models.Usuario;
 import com.example.ljosias.appcontroledepresencas.services.IUsuarioService;
 import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import retrofit2.Call;
@@ -57,16 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<Usuario>() {
                     @Override
                     public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-                        Toast.makeText(getApplicationContext(), "Bem-Vindo "+email, Toast.LENGTH_LONG).show();
-                        startActivityForResult(myIntent, 0);
+                        if (response.isSuccessful()) {
+                            Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+                            Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+                            startActivityForResult(myIntent, 0);
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<Usuario> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Deu algum erro aqui", Toast.LENGTH_LONG).show();
-                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-                        startActivityForResult(myIntent, 0);
+                        Toast.makeText(getApplicationContext(), "Error:"+t.getMessage(), Toast.LENGTH_LONG).show();
+//                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+//                        startActivityForResult(myIntent, 0);
                     }
 
 

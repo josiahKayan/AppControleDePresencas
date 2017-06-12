@@ -1,9 +1,7 @@
-package com.example.ljosias.appcontroledepresencas.model;
+package com.example.ljosias.appcontroledepresencas.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
 
 /**
  * Created by ljosias on 03/06/2017.

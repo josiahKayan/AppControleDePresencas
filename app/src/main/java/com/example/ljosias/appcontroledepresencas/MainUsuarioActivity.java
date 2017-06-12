@@ -1,8 +1,6 @@
 package com.example.ljosias.appcontroledepresencas;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -19,9 +17,11 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-import layout.BlankFragment;
+import layout.AlunoFragment;
 import layout.CursosFragment;
 import layout.PresencaFragment;
+import layout.ProfessorFragment;
+import layout.TurmaFragment;
 
 public class MainUsuarioActivity extends AppCompatActivity {
 
@@ -58,14 +58,20 @@ public class MainUsuarioActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//
+//                Toast.makeText(getApplicationContext(), "Adicionar novo", Toast.LENGTH_LONG).show();
+//
+//                Fragment fragment = new BlankFragment();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+//
+//            }
+//        });
 
     }
 
@@ -146,34 +152,40 @@ public class MainUsuarioActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return new CursosFragment();
-
                 case 1:
-                    return new PresencaFragment();
-
+                    return new TurmaFragment();
                 case 2:
-                    return new BlankFragment();
+                    return new ProfessorFragment();
+                case 3:
+                    return new AlunoFragment();
+                case 4:
+                    return new PresencaFragment();
                 default:
-                    return new BlankFragment();
+                    return new CursosFragment();
             }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 5;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Cursos";
+                    return "Curso";
                 case 1:
-                    return "Presença";
+                    return "Turma";
                 case 2:
-                    return "Perfil";
+                    return "Professor";
+                case 3:
+                    return "Aluno";
+                case 4:
+                    return "Presença";
                 default:
-                    return "SECTION 1";
+                    return "Curso";
             }
         }
     }

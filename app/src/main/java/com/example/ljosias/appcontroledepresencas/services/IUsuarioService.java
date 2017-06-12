@@ -1,7 +1,6 @@
 package com.example.ljosias.appcontroledepresencas.services;
 
-import com.example.ljosias.appcontroledepresencas.model.Company;
-import com.example.ljosias.appcontroledepresencas.model.Usuario;
+import com.example.ljosias.appcontroledepresencas.models.Usuario;
 
 import java.util.List;
 

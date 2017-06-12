@@ -1,7 +1,5 @@
 package com.example.ljosias.appcontroledepresencas.client;
 
-import com.example.ljosias.appcontroledepresencas.services.ICompanyService;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,8 +11,8 @@ public class RetrofitClient {
 
     private static Retrofit retrofit = null;
 
-//    private static final String  baseUrl =  "http://172.17.72.71:8090/" ;
-    private static final String  baseUrl =  "http://192.168.0.12:8090/" ;
+    //private static final String  baseUrl =  "http://172.17.72.71:8090/" ;
+    private static final String  baseUrl =  "http://192.168.0.10:8090/" ;
 
     public static Retrofit getClient() {
         if (retrofit==null)
