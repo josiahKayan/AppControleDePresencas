@@ -1,6 +1,8 @@
-package com.example.ljosias.appcontroledepresencas;
+package com.example.ljosias.appcontroledepresencas.mainaluno;
 
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,13 +19,15 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.ljosias.appcontroledepresencas.R;
+
 import layout.AlunoFragment;
 import layout.CursosFragment;
-import layout.PresencaFragment;
+import layout.PerfilFragment;
 import layout.ProfessorFragment;
 import layout.TurmaFragment;
 
-public class MainUsuarioActivity extends AppCompatActivity {
+public class AlunoMainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -43,7 +47,7 @@ public class MainUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_usuario);
+        setContentView(R.layout.activity_aluno_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,14 +66,8 @@ public class MainUsuarioActivity extends AppCompatActivity {
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//
-//                Toast.makeText(getApplicationContext(), "Adicionar novo", Toast.LENGTH_LONG).show();
-//
-//                Fragment fragment = new BlankFragment();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
-//
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
 //            }
 //        });
 
@@ -79,7 +77,7 @@ public class MainUsuarioActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_usuario, menu);
+        getMenuInflater().inflate(R.menu.menu_aluno_main, menu);
         return true;
     }
 
@@ -126,7 +124,7 @@ public class MainUsuarioActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main_usuario, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_aluno_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -143,25 +141,7 @@ public class MainUsuarioActivity extends AppCompatActivity {
             super(fm);
         }
 
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-//            return PlaceholderFragment.newInstance(position + 1);
 
-            switch (position) {
-                case 0:
-                    return new CursosFragment();
-                case 1:
-                    return new ProfessorFragment();
-                case 2:
-                    return new AlunoFragment();
-//                case 4:
-//                    return new PresencaFragment();
-                default:
-                    return new CursosFragment();
-            }
-        }
 
         @Override
         public int getCount() {
@@ -170,19 +150,19 @@ public class MainUsuarioActivity extends AppCompatActivity {
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+//            return PlaceholderFragment.newInstance(position + 1);
+
             switch (position) {
                 case 0:
-                    return "Curso";
+                    return new PerfilFragment();
                 case 1:
-                    //return "Turma";
-                    return "Professor";
-                case 2:
-                    return "Aluno";
-//                case 4:
-//                    return "Presença";
+                    return new TurmaFragment();
+
                 default:
-                    return "Curso";
+                    return new PerfilFragment();
             }
         }
     }

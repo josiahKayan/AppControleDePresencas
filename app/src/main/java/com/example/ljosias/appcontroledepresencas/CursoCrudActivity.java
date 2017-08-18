@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.models.Curso;
@@ -14,13 +16,16 @@ import com.example.ljosias.appcontroledepresencas.services.ICursoService;
 import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static java.security.AccessController.getContext;
 
-public class CrudActivity extends AppCompatActivity {
+public class CursoCrudActivity extends AppCompatActivity {
 
     EditText editTextNome , editTextDescricao ;
     CheckBox checkBoxAtivo ;
@@ -28,6 +33,7 @@ public class CrudActivity extends AppCompatActivity {
     Button buttonDelete;
     Curso curso;
     int id ;
+    Spinner turmaSpinner;
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -39,6 +45,18 @@ public class CrudActivity extends AppCompatActivity {
         checkBoxAtivo = (CheckBox) findViewById(R.id.checkBoxAtivo);
         buttonSalvar = (Button) findViewById(R.id.buttonSalvarCurso);
         buttonDelete = (Button) findViewById(R.id.buttonApagarCurso);
+        turmaSpinner = (Spinner) findViewById(R.id.spinnerTurmas);
+
+        List<String> listTurmas = new ArrayList<>();
+
+        listTurmas.add("VT1 - 01");
+        listTurmas.add("VT1 - 02");
+        listTurmas.add("VT2 - 02");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listTurmas);
+        ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        turmaSpinner.setAdapter(spinnerArrayAdapter);
 
         String jsonMyObject = "";
         Bundle extras = getIntent().getExtras();

@@ -1,7 +1,9 @@
 package com.example.ljosias.appcontroledepresencas.utils;
 
 import com.example.ljosias.appcontroledepresencas.client.RetrofitClient;
+import com.example.ljosias.appcontroledepresencas.services.IAlunoService;
 import com.example.ljosias.appcontroledepresencas.services.ICursoService;
+import com.example.ljosias.appcontroledepresencas.services.IProfessorService;
 import com.example.ljosias.appcontroledepresencas.services.IUsuarioService;
 
 /**
@@ -22,4 +24,13 @@ public class Utils {
         return RetrofitClient.getClient().create(ICursoService.class);
     }
 
+    public static IProfessorService getProfessorService( ) {
+
+        return RetrofitClient.getClient().create(IProfessorService.class);
+    }
+
+    public static IAlunoService getAlunoService( ) {
+
+        return RetrofitClient.getClient().create(IAlunoService.class);
+    }
 }

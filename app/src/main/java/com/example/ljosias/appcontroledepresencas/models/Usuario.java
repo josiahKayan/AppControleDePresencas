@@ -10,43 +10,62 @@ import com.google.gson.annotations.SerializedName;
 public class Usuario {
 
     @SerializedName("UsuarioId")
-    @Expose
-    private String usuarioId ;
+//    @Expose
+    public int UsuarioId ;
 
     @SerializedName("Email")
-    @Expose
-    private String email ;
+//    @Expose
+    public String Email ;
 
     @SerializedName("Senha")
-    @Expose
-    private String senha ;
+//    @Expose
+    public String Senha ;
+
+    @SerializedName("Perfil")
+//    @Expose
+    public int Perfil ;
+
 
     public Usuario(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
+        this.Email = email;
+        this.Senha = senha;
     }
 
-    public String getUsuarioId() {
-        return usuarioId;
+    public Usuario(String email, String senha, int perfil) {
+        this.Email = email;
+        this.Senha = senha;
+        this.Perfil = perfil;
     }
 
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
-    }
+//    public String getPerfil() {
+//        return perfil;
+//    }
+//
+//    public void setPerfil(String perfil) {
+//        this.perfil = perfil;
+//    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+//    public String getUsuarioId() {
+//        return usuarioId;
+//    }
+//
+//    public void setUsuarioId(String usuarioId) {
+//        this.usuarioId = usuarioId;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
 }

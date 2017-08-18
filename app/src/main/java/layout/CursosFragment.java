@@ -1,25 +1,17 @@
 package layout;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ljosias.appcontroledepresencas.CrudActivity;
-import com.example.ljosias.appcontroledepresencas.MainUsuarioActivity;
+import com.example.ljosias.appcontroledepresencas.CursoCrudActivity;
 import com.example.ljosias.appcontroledepresencas.R;
 import com.example.ljosias.appcontroledepresencas.adapters.CursosListAdapter;
 import com.example.ljosias.appcontroledepresencas.models.Curso;
@@ -27,15 +19,10 @@ import com.example.ljosias.appcontroledepresencas.services.ICursoService;
 import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static java.lang.Thread.sleep;
 
@@ -49,17 +36,6 @@ public class CursosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_cursos, container, false);
-
-//        Curso curso = new Curso();
-//        curso.nome = "Origens";
-//        curso.descricao = "Origens de tudo";
-//        curso.ativo = true;
-//
-//        Curso curso2 = new Curso();
-//        curso2.nome = "Princípios de Vida";
-//        curso2.descricao = "O estudo dos princípios elementares da vida de Cristo";
-//        curso2.ativo = true;
-
 
 
         listView = (ListView) rootView.findViewById(R.id.listViewCursos);
@@ -88,15 +64,10 @@ public class CursosFragment extends Fragment {
         }).start();
 
         try {
-            sleep(800);
+            sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-//        GetAllCursos();
-//        cursosListAdapter.add(curso);
-
 
 
         final CursosListAdapter adapter ;
@@ -107,7 +78,7 @@ public class CursosFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Curso cursoSelected = cursosListAdapter.get(position);
-                Intent myIntent = new Intent(getContext().getApplicationContext(), CrudActivity.class);
+                Intent myIntent = new Intent(getContext().getApplicationContext(), CursoCrudActivity.class);
 
                 myIntent.putExtra("curso", new Gson().toJson(cursoSelected));
                 startActivityForResult(myIntent, 0);
@@ -128,7 +99,7 @@ public class CursosFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent myIntent = new Intent(getContext(), CrudActivity.class);
+                Intent myIntent = new Intent(getContext(), CursoCrudActivity.class);
                 Toast.makeText(getActivity(), "Crud Fragment ", Toast.LENGTH_LONG).show();
                 startActivityForResult(myIntent, 0);
 

@@ -1,13 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.ProfessorFragment">
+    android:orientation="vertical"
+    tools:context="layout.ProfessorFragment"
+    android:weightSum="1">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/newProfessor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ListView
+        android:id="@+id/listViewProfessores"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="0.65"
+        android:scrollbars="horizontal|vertical" />
 
-</FrameLayout>
+</LinearLayout>

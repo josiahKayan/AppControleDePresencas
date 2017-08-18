@@ -1,10 +1,14 @@
 package com.example.ljosias.appcontroledepresencas.services;
 
+import com.example.ljosias.appcontroledepresencas.log.Log;
 import com.example.ljosias.appcontroledepresencas.models.Usuario;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FormUrlEncoded;
@@ -23,20 +27,22 @@ public interface IUsuarioService {
     List<Call<Usuario>> getUsuarios( );
 
     @POST("login/logar")
-    Call<Usuario> login( @Body Usuario usuario );
+    Call<Log> login(@Body Usuario usuario );
 
-    @GET("usuario/{usuarioId}")
-    Call<Usuario> getUsuarioPeloId(@Path("usuarioId") int usuarioId );
 
-    @POST("usuario/addusuario")
-    @FormUrlEncoded
-    Call<Usuario> addUsuario(@Body Usuario usuario  );
 
-    @PUT("usuario/update/{Id}")
-    @FormUrlEncoded
-    Call<Usuario> atualizaUsuario(@Body Usuario usuario, @Path("Id") int usuarioId  );
-
-    @DELETE("usuario/delete/{Id}")
-    @FormUrlEncoded
-    Call<Usuario> deleteUsuario( @Path("Id") int usuarioId  );
+//    @GET("usuario/{usuarioId}")
+//    Call<Usuario> getUsuarioPeloId(@Path("UsuarioId") int UsuarioId );
+//
+//    @POST("usuario/addusuario")
+//    @FormUrlEncoded
+//    Call<Usuario> addUsuario(@Body Usuario usuario  );
+//
+//    @PUT("usuario/update/{Id}")
+//    @FormUrlEncoded
+//    Call<Usuario> atualizaUsuario(@Body Usuario usuario, @Path("Id") int UsuarioId  );
+//
+//    @DELETE("usuario/delete/{Id}")
+//    @FormUrlEncoded
+//    Call<Usuario> deleteUsuario( @Path("Id") int usuarioId  );
 }
