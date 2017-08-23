@@ -85,4 +85,5 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_professor_login_main">ProfessorLoginMainActivity</string>
     <string name="title_activity_aluno_main">AlunoMainActivity</string>
+    <string name="title_activity_professor_main">ProfessorMainActivity</string>
 </resources>

@@ -42,6 +42,9 @@
             android:name=".mainaluno.AlunoMainActivity"
             android:label="@string/title_activity_aluno_main"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ProfessorMainActivity"
+            android:label="@string/title_activity_professor_main"></activity>
     </application>
 
 </manifest>

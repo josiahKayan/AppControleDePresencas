@@ -15,6 +15,10 @@ public class Turma {
     @Expose
     public int turmaId ;
 
+    @SerializedName("NomeTurma")
+    @Expose
+    public String nomeTurma ;
+
     @SerializedName("DataInicio")
     @Expose
     public String dataInicio ;
@@ -22,6 +26,14 @@ public class Turma {
     @SerializedName("DataTermino")
     @Expose
     public String dataTermino ;
+
+    @SerializedName("HoraInicial")
+    @Expose
+    public String horaInicial ;
+
+    @SerializedName("HoraFinal")
+    @Expose
+    public String horaFinal ;
 
     @SerializedName("Professor")
     @Expose

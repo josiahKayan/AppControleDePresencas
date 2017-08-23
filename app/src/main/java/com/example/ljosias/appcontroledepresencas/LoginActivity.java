@@ -56,59 +56,64 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void Logar() {
-        IUsuarioService usuarioService;
 
-        usuarioService = Utils.getUsuarioService();
+        Intent myIntent = new Intent(getBaseContext(), ProfessorMainActivity.class);
+        startActivityForResult(myIntent, 0);
 
-        Usuario usuario = new Usuario(email, password);
-        usuario.Email =  "jkayanlima@gmail.com" ;
-        usuario.Senha =  "123" ;
 
-        Call<Log> call = usuarioService.login(usuario);
-                call.enqueue(new Callback<Log>() {
-                    @Override
-                    public void onResponse(Call<Log> call, Response<Log> response) {
-                        if (response.isSuccessful()) {
-
-                            if(response.body() == null) {
-                                Toast.makeText(getApplicationContext(), "Error:", Toast.LENGTH_LONG).show();
-                            }
-                            Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-                                    startActivityForResult(myIntent, 0);
-
-//                            else {
-//                                if (response.body().perfil== 0) {
-//                                    Intent myIntent = new Intent(getBaseContext(), AlunoMainActivity.class);
-//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
+//        IUsuarioService usuarioService;
 //
-//                                if (response.body().perfil ==1) {
-//                                    Intent myIntent = new Intent(getBaseContext(), ProfessorLoginMainActivity.class);
-//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
+//        usuarioService = Utils.getUsuarioService();
 //
-//                                if (response.body().perfil ==2) {
-//                                    Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
+//        Usuario usuario = new Usuario(email, password);
+//        usuario.Email =  "jkayanlima@gmail.com" ;
+//        usuario.Senha =  "123" ;
+//
+//        Call<Log> call = usuarioService.login(usuario);
+//                call.enqueue(new Callback<Log>() {
+//                    @Override
+//                    public void onResponse(Call<Log> call, Response<Log> response) {
+//                        if (response.isSuccessful()) {
+//
+//                            if(response.body() == null) {
+//                                Toast.makeText(getApplicationContext(), "Error:", Toast.LENGTH_LONG).show();
 //                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Log> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error:"+t.getMessage(), Toast.LENGTH_LONG).show();
-//                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-//                        startActivityForResult(myIntent, 0);
-                    }
-
-
-                });
+//                            Intent myIntent = new Intent(getBaseContext(), ProfessorLoginMainActivity.class);
+//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+//                                    startActivityForResult(myIntent, 0);
+//
+////                            else {
+////                                if (response.body().perfil== 0) {
+////                                    Intent myIntent = new Intent(getBaseContext(), AlunoMainActivity.class);
+////                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+////                                    startActivityForResult(myIntent, 0);
+////                                }
+////
+////                                if (response.body().perfil ==1) {
+////                                    Intent myIntent = new Intent(getBaseContext(), ProfessorLoginMainActivity.class);
+////                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+////                                    startActivityForResult(myIntent, 0);
+////                                }
+////
+////                                if (response.body().perfil ==2) {
+////                                    Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+////                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+////                                    startActivityForResult(myIntent, 0);
+////                                }
+////                            }
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Log> call, Throwable t) {
+//                        Toast.makeText(getApplicationContext(), "Error:"+t.getMessage(), Toast.LENGTH_LONG).show();
+////                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+////                        startActivityForResult(myIntent, 0);
+//                    }
+//
+//
+//                });
     }
 }
 
