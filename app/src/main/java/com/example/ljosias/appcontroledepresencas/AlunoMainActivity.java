@@ -9,20 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.ljosias.appcontroledepresencas.fragmentsaluno.AlunoPerfilFragment;
+import com.example.ljosias.appcontroledepresencas.fragmentsaluno.AlunoTurmasFragment;
 import com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorPerfilFragment;
 import com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorTurmasFragment;
 
-public class ProfessorMainActivity extends AppCompatActivity {
-
+public class AlunoMainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_professor_main);
+        setContentView(R.layout.activity_aluno_main);
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_professor);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_aluno);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -31,10 +32,10 @@ public class ProfessorMainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.navigation_home:
-                        selectedFragment = ProfessorPerfilFragment.newInstance();
+                        selectedFragment = AlunoPerfilFragment.newInstance();
                         break;
                     case R.id.navigation_dashboard:
-                        selectedFragment = ProfessorTurmasFragment.newInstance();
+                        selectedFragment = AlunoTurmasFragment.newInstance();
                         break;
                     default:
                         break;
@@ -48,7 +49,7 @@ public class ProfessorMainActivity extends AppCompatActivity {
 
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content, ProfessorPerfilFragment.newInstance());
+        transaction.replace(R.id.content, AlunoPerfilFragment.newInstance());
         transaction.commit();
 
     }

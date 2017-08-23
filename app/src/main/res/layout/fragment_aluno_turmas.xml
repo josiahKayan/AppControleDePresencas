@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorTurmasFragment">
+    tools:context="com.example.ljosias.appcontroledepresencas.fragmentsaluno.AlunoTurmasFragment">
 
 
     <ListView
-        android:id="@+id/ListViewProfessorTurma"
+        android:id="@+id/ListViewAlunoTurma"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

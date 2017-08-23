@@ -2,14 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorPerfilFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context="com.example.ljosias.appcontroledepresencas.fragmentsaluno.AlunoPerfilFragment">
 
     <ScrollView
+        style="@android:style/Widget.Holo.ScrollView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scrollbarStyle="insideOverlay">
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:scrollbarStyle="insideOverlay"
+
+        tools:layout_editor_absoluteX="8dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -24,7 +29,7 @@
                 tools:text="Nome" />
 
             <EditText
-                android:id="@+id/editTextPPNome"
+                android:id="@+id/editTextPerfilAlunoNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -45,7 +50,7 @@
                 tools:text="Nome Completo" />
 
             <EditText
-                android:id="@+id/editTextPPNomeCompleto"
+                android:id="@+id/editTextPerfilAlunoNomeCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -59,35 +64,35 @@
                 tools:text="Idade" />
 
             <EditText
-                android:id="@+id/editTextPPIdade"
+                android:id="@+id/editTextPerfilAlunoIdade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Usuario"
                 tools:text="Usuario" />
 
             <EditText
-                android:id="@+id/editTextPPProfName"
+                android:id="@+id/editTextPerfilAlunoUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Senha"
                 tools:text="Senha" />
 
             <EditText
-                android:id="@+id/editTextPProfSenha"
+                android:id="@+id/editTextPerfilAlunoPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -101,25 +106,29 @@
                 tools:text="Data de Nascimento" />
 
             <EditText
-                android:id="@+id/editTextPPDataNascimento"
+                android:id="@+id/editTextDataPerfilAlunoNascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textViewTag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lista de  Turmas" />
+                android:layout_weight="0.44"
+                android:text="Tag"
+                tools:text="Tag" />
 
             <Spinner
-                android:id="@+id/spinnerPP"
+                android:id="@+id/spinnerPerfilAlunoTag"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:weightSum="1"
@@ -128,24 +137,24 @@
 
 
                 <Button
-                    android:id="@+id/buttonApagarPPProfessor"
+                    android:id="@+id/buttonApagarPerfilAluno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Deletar"
                     tools:text="Deletar" />
 
                 <Button
-                    android:id="@+id/buttonSalvarPPProfessor"
+                    android:id="@+id/buttonSalvarPerfilAluno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Salvar"
                     tools:text="Salvar" />
+
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
 
+
+    </ScrollView>
 
 </LinearLayout>

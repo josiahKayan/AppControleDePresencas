@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.log.Log;
-import com.example.ljosias.appcontroledepresencas.mainaluno.AlunoMainActivity;
-import com.example.ljosias.appcontroledepresencas.menuprofessor.ProfessorLoginMainActivity;
 import com.example.ljosias.appcontroledepresencas.models.Professor;
 import com.example.ljosias.appcontroledepresencas.models.Usuario;
 import com.example.ljosias.appcontroledepresencas.services.IUsuarioService;
