@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.example.ljosias.appcontroledepresencas.ListaCursoTurmaActivity;
+import com.example.ljosias.appcontroledepresencas.ListaOpcoesActivity;
 import com.example.ljosias.appcontroledepresencas.PresencaActivity;
 import com.example.ljosias.appcontroledepresencas.ProfessorMainActivity;
 import com.example.ljosias.appcontroledepresencas.R;
@@ -55,9 +57,8 @@ public class ProfessorTurmasFragment extends Fragment {
 //        https://www.androidhive.info/2016/05/android-working-with-card-view-and-recycler-view/
 
 
-        settingsArrayListAdapter.add("Nova Chamada");
-        settingsArrayListAdapter.add("Adicionar Aluno a turma");
-        settingsArrayListAdapter.add("Presenças");
+        settingsArrayListAdapter.add("Origens: Turma 1");
+        settingsArrayListAdapter.add("Idades Espirituais: Turma 2");
 
         listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, settingsArrayListAdapter));
 
@@ -72,67 +73,8 @@ public class ProfessorTurmasFragment extends Fragment {
                 int itemPosition     = position;
 
 
-                if(itemPosition ==0)
-                {
-                    final Dialog dialog = new Dialog(getContext());
-                    dialog.setContentView(R.layout.dialog_nova_chamada);
-                    dialog.setTitle("Nova Chamada");
-
-                    Button dialogButtonSalvar = (Button) dialog.findViewById(R.id.buttonNovaChamadaSalvar);
-                    dialogButtonSalvar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    Button dialogButtonCancelar = (Button) dialog.findViewById(R.id.buttonNovaChamadaCancelar);
-                    dialogButtonCancelar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    CheckBox checkBoxStatus = (CheckBox) dialog.findViewById(R.id.checkBoxAtivo);
-
-                    dialog.show();
-                }
-
-                else if(itemPosition ==1)
-                {
-                    final Dialog dialog = new Dialog(getContext());
-                    dialog.setContentView(R.layout.dialog_novo_aluno);
-                    dialog.setTitle("Novo Aluno");
-
-                    Button dialogButtonSalvar = (Button) dialog.findViewById(R.id.buttonNovoAlunoSalvar);
-                    dialogButtonSalvar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    Button dialogButtonCancelar = (Button) dialog.findViewById(R.id.buttonNovoAlunoCancelar);
-                    dialogButtonCancelar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-
-                    dialog.show();
-                }
-
-                else if(itemPosition ==2)
-                {
-
-                    Intent myIntent = new Intent(getContext(), PresencaActivity.class);
-                    startActivityForResult(myIntent, 0);
-
-
-                }
+                Intent myIntent = new Intent(getContext(), ListaOpcoesActivity.class);
+                startActivityForResult(myIntent, 0);
 
                 // ListView Clicked item value
                 String  itemValue    = (String) listView.getItemAtPosition(position);

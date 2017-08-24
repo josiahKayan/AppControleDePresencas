@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/l3"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
 
+    <LinearLayout
+        android:id="@+id/l"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView102"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome" />
+
+        <TextView
+            android:id="@+id/textViewPresencaNomeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Josias" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:orientation="horizontal"></LinearLayout>
+
+        <TextView
+            android:id="@+id/textView101"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:text="Nome Completo" />
 
-            <TextView
-                android:id="@+id/textView102"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nome" />
+        <TextView
+            android:id="@+id/textViewPresencaNomeCompletoAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Josias Kayan" />
 
-            <TextView
-                android:id="@+id/textViewPresencaNomeAluno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Josias" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:orientation="horizontal"></LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="horizontal"></LinearLayout>
+        <TextView
+            android:id="@+id/textView100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Horário de Chegada" />
 
-            <TextView
-                android:id="@+id/textView101"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nome Completo" />
-
-            <TextView
-                android:id="@+id/textViewPresencaNomeCompletoAluno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Josias Kayan" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:orientation="horizontal"></LinearLayout>
-
-            <TextView
-                android:id="@+id/textView100"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Horário de Chegada" />
-
-            <TextView
-                android:id="@+id/textViewHoraChegada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="10:00" />
+        <TextView
+            android:id="@+id/textViewHoraChegada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10:00" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

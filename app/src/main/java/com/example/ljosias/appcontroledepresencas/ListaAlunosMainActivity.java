@@ -41,7 +41,8 @@ public class ListaAlunosMainActivity extends AppCompatActivity {
                 // ListView Clicked item index
                 int itemPosition     = position;
 
-                Dialog dialog = new Dialog(getBaseContext());
+                Dialog dialog = new Dialog(ListaAlunosMainActivity.this,android.R.style.Animation_Activity);
+
                 dialog.setContentView(R.layout.detalhes_aluno_presenca);
                 dialog.setTitle("Detalhes Aluno");
 
@@ -52,16 +53,14 @@ public class ListaAlunosMainActivity extends AppCompatActivity {
                 TextView nTextView = (TextView) dialog.findViewById(R.id.textView102);
                 TextView nCTextView = (TextView) dialog.findViewById(R.id.textView101);
                 TextView hCTextView = (TextView) dialog.findViewById(R.id.textView100);
+                try {
+                    dialog.show();
+                }
+                catch (Exception E){
+                    String teste = E.getMessage();
 
-                dialog.show();
+                }
 
-//                // ListView Clicked item value
-//                String  itemValue    = (String) listView.getItemAtPosition(position);
-//
-//                // Show Alert
-//                Toast.makeText(getBaseContext(),
-//                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-//                        .show();
 
             }
         });

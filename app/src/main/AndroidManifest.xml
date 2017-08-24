@@ -49,7 +49,9 @@
             android:name=".AlunoMainActivity"
             android:label="@string/title_activity_aluno_main" />
         <activity android:name=".PresencaActivity" />
-        <activity android:name=".ListaAlunosMainActivity"></activity>
+        <activity android:name=".ListaAlunosMainActivity" />
+        <activity android:name=".ListaCursoTurmaActivity" />
+        <activity android:name=".ListaOpcoesActivity"></activity>
     </application>
 
 </manifest>
