@@ -23,15 +23,28 @@ import com.example.ljosias.appcontroledepresencas.PresencaActivity;
 import com.example.ljosias.appcontroledepresencas.ProfessorMainActivity;
 import com.example.ljosias.appcontroledepresencas.R;
 import com.example.ljosias.appcontroledepresencas.adapters.ProfessoresListAdapter;
+import com.example.ljosias.appcontroledepresencas.models.Curso;
 import com.example.ljosias.appcontroledepresencas.models.Presenca;
+import com.example.ljosias.appcontroledepresencas.models.Professor;
+import com.example.ljosias.appcontroledepresencas.models.Turma;
+import com.example.ljosias.appcontroledepresencas.models.Usuario;
+import com.example.ljosias.appcontroledepresencas.services.IProfessorService;
+import com.example.ljosias.appcontroledepresencas.utils.Utils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+
+import static java.lang.Thread.sleep;
 
 
 public class ProfessorTurmasFragment extends Fragment {
 
     private ListView listView;
     private ArrayList<String> settingsArrayListAdapter;
+    Professor professor;
 
     public static ProfessorTurmasFragment newInstance() {
         ProfessorTurmasFragment fragment = new ProfessorTurmasFragment();
@@ -50,17 +63,47 @@ public class ProfessorTurmasFragment extends Fragment {
 
         listView = (ListView) rootView.findViewById(R.id.ListViewProfessorTurma);
 
-        settingsArrayListAdapter = new ArrayList<>();
 
-//        http://www.codehenge.net/2011/05/customizing-android-listview-item-layout/
-//        https://code.tutsplus.com/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
-//        https://www.androidhive.info/2016/05/android-working-with-card-view-and-recycler-view/
+        new Thread(new Runnable()
+        {
+            public void run() {
+                IProfessorService professoreservice;
+                professoreservice = Utils.getProfessorService();
+                //Adicionar um EndPoint para capturar o Id do professor
+                Call<Professor> call = professoreservice.getProfessorPeloId(1);
+                professor = null;
+                try {
+                    professor = call.execute().body();
+                    if ( professor != null )
+                    {
 
+                        List<String> listTurmas = new ArrayList<>();
 
-        settingsArrayListAdapter.add("Origens: Turma 1");
-        settingsArrayListAdapter.add("Idades Espirituais: Turma 2");
+                        for ( Turma turma  : professor.turmaLista )
+                        {
+                            listTurmas.add(turma.nomeTurma);
+                        }
 
-        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, settingsArrayListAdapter));
+                        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, listTurmas));
+
+                    }
+                } catch (Exception e)
+                {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+            }
+        }).start();
+
+        try
+        {
+            sleep(1000);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,8 +115,11 @@ public class ProfessorTurmasFragment extends Fragment {
                 // ListView Clicked item index
                 int itemPosition     = position;
 
+                Turma turmaSelected = professor.turmaLista.get(position);
 
                 Intent myIntent = new Intent(getContext(), ListaOpcoesActivity.class);
+                myIntent.putExtra("turma", new Gson().toJson(turmaSelected));
+
                 startActivityForResult(myIntent, 0);
 
                 // ListView Clicked item value

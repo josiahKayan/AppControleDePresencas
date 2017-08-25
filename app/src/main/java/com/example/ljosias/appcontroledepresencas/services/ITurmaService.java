@@ -36,5 +36,7 @@ public interface ITurmaService {
     @POST("turma/delete/{turmaId}")
     Call<Log> deleteTurma( @Path("turmaId") int turmaId  );
 
-
+    @POST("turma/{turmaId}/{alunoId}")
+    @FormUrlEncoded
+    Call<Log> adicionaAlunoATurma(@Path("turmaId") int turmaId,@Path("alunoId") int alunoId   );
 }

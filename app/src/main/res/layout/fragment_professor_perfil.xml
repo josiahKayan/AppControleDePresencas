@@ -128,20 +128,19 @@
 
 
                 <Button
-                    android:id="@+id/buttonApagarPPProfessor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Deletar"
-                    tools:text="Deletar" />
-
-                <Button
                     android:id="@+id/buttonSalvarPPProfessor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Salvar"
                     tools:text="Salvar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:orientation="vertical">
+
             </LinearLayout>
 
         </LinearLayout>

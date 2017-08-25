@@ -28,9 +28,8 @@ public interface IProfessorService {
     @POST("professor/addprofessor")
     Call<Log> addProfessor(@Body Professor professor  );
 
-    @PUT("professor/update/{professorId}")
-    @FormUrlEncoded
-    Call<Professor> atualizaProfessor(@Body Professor Professor, @Path("ProfessorId") int professorId  );
+    @POST("professor/addprofessor")
+    Call<Log> atualizaProfessor(@Body Professor professor);
 
     @POST("professor/delete/{professorId}")
     Call<Log> deleteProfessor( @Path("professorId") int professorId  );

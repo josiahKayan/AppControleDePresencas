@@ -8,19 +8,37 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorPerfilFragment;
 import com.example.ljosias.appcontroledepresencas.fragmentsprofessor.ProfessorTurmasFragment;
+import com.example.ljosias.appcontroledepresencas.models.Aluno;
+import com.example.ljosias.appcontroledepresencas.models.Usuario;
+import com.google.gson.Gson;
 
 public class ProfessorMainActivity extends AppCompatActivity {
 
 
     private BottomNavigationView bottomNavigationView;
+    int id = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professor_main);
+
+        Usuario usuario = null;
+
+        String jsonMyObject = "";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonMyObject = extras.getString("usuario");
+            usuario = new Gson().fromJson(jsonMyObject, Usuario.class);
+            id = usuario.UsuarioId;
+            Toast.makeText(getApplicationContext(), "" + usuario.Email, Toast.LENGTH_LONG).show();
+
+        }
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_professor);
 

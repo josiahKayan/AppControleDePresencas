@@ -9,29 +9,47 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.ljosias.appcontroledepresencas.log.Log;
+import com.example.ljosias.appcontroledepresencas.models.Curso;
+import com.example.ljosias.appcontroledepresencas.models.Turma;
+import com.example.ljosias.appcontroledepresencas.services.ICursoService;
+import com.example.ljosias.appcontroledepresencas.services.ITurmaService;
+import com.example.ljosias.appcontroledepresencas.utils.Utils;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListaOpcoesActivity extends AppCompatActivity {
 
     private ListView listView;
     private ArrayList<String> settingsArrayListAdapter;
+    Turma turma = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_opcoes);
 
+        String jsonMyObject = "";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonMyObject = extras.getString("turma");
+            turma = new Gson().fromJson(jsonMyObject, Turma.class);
+
+        }
+
         listView = (ListView) findViewById(R.id.listViewListaOpcoes);
 
         settingsArrayListAdapter = new ArrayList<>();
-
-//        http://www.codehenge.net/2011/05/customizing-android-listview-item-layout/
-//        https://code.tutsplus.com/tutorials/getting-started-with-recyclerview-and-cardview-on-android--cms-23465
-//        https://www.androidhive.info/2016/05/android-working-with-card-view-and-recycler-view/
-
 
         settingsArrayListAdapter.add("Nova Chamada");
         settingsArrayListAdapter.add("Adicionar Aluno a turma");
@@ -83,10 +101,40 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                     dialog.setContentView(R.layout.dialog_novo_aluno);
                     dialog.setTitle("Novo Aluno");
 
+                    final EditText editTextNovoAlunoMatricula = (EditText) dialog.findViewById(R.id.editTextNovoAlunoMatricula);
+
+
                     Button dialogButtonSalvar = (Button) dialog.findViewById(R.id.buttonNovoAlunoSalvar);
                     dialogButtonSalvar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+                            ITurmaService turmaService;
+
+                            turmaService = Utils.getTurmaService();
+
+                            Call<Log> call = turmaService.adicionaAlunoATurma(turma.turmaId,Integer.parseInt(editTextNovoAlunoMatricula.getText().toString()));
+
+                            call.enqueue(new Callback<Log>() {
+                                @Override
+                                public void onResponse(Call<Log> call, Response<Log> response) {
+                                    if (response.isSuccessful()) {
+                                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+                                        Toast.makeText(getApplicationContext(), "Salvou ", Toast.LENGTH_LONG).show();
+                                        startActivityForResult(myIntent, 0);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Log> call, Throwable t) {
+                                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+//                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+//                        startActivityForResult(myIntent, 0);
+                                }
+
+
+                            });
+
                             dialog.dismiss();
                         }
                     });
