@@ -20,7 +20,7 @@ public class Presenca {
     /// </summary>
     @SerializedName("HoraEntrada")
     @Expose
-    public Date horaEntrada ;
+    public String horaEntrada ;
     /// <summary>
     /// Marca o mes
     /// </summary>
@@ -38,12 +38,16 @@ public class Presenca {
     @Expose
     public int dia ;
 
+    @SerializedName("Ativo")
+    @Expose
+    public boolean ativo ;
+
     //public  Turma Turma ;
     /// <summary>
     /// Lista de Turmas
     /// </summary>
-    @SerializedName("TurmaLista")
+    @SerializedName("TurmaId")
     @Expose
-    public List<Turma> turmaLista ;
+    public int turmaId ;
     
 }

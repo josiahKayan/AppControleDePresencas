@@ -9,14 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.log.Log;
-import com.example.ljosias.appcontroledepresencas.models.Curso;
+import com.example.ljosias.appcontroledepresencas.models.Presenca;
 import com.example.ljosias.appcontroledepresencas.models.Turma;
-import com.example.ljosias.appcontroledepresencas.services.ICursoService;
+import com.example.ljosias.appcontroledepresencas.services.IPresencaService;
 import com.example.ljosias.appcontroledepresencas.services.ITurmaService;
 import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ public class ListaOpcoesActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<String> settingsArrayListAdapter;
     Turma turma = null;
-
+    CheckBox checkBoxStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class ListaOpcoesActivity extends AppCompatActivity {
 
         String jsonMyObject = "";
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        if (extras != null)
+        {
             jsonMyObject = extras.getString("turma");
             turma = new Gson().fromJson(jsonMyObject, Turma.class);
 
@@ -67,17 +69,58 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                 // ListView Clicked item index
                 int itemPosition     = position;
 
-
+                // Chama o EndPoint de nova Presença
                 if(itemPosition ==0)
                 {
                     final Dialog dialog = new Dialog(ListaOpcoesActivity.this);
                     dialog.setContentView(R.layout.dialog_nova_chamada);
                     dialog.setTitle("Nova Chamada");
 
+                    checkBoxStatus = (CheckBox) dialog.findViewById(R.id.checkBoxNovaChamada);
+
+                    DatePicker datePicker = (DatePicker) dialog.findViewById(R.id.datePicker2);
+                    final int day = datePicker.getDayOfMonth();
+                    final int month = datePicker.getMonth() + 1;
+                    final int year = datePicker.getYear();
+
                     Button dialogButtonSalvar = (Button) dialog.findViewById(R.id.buttonNovaChamadaSalvar);
                     dialogButtonSalvar.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
+                        public void onClick(View v)
+                        {
+
+                            Presenca presenca = new Presenca();
+                            presenca.horaEntrada = turma.horaInicial;
+                            presenca.dia = day;
+                            presenca.mes = month;
+                            presenca.ano = year;
+                            presenca.ativo = checkBoxStatus.isChecked();
+                            presenca.turmaId = turma.turmaId;
+
+                            IPresencaService presencaService;
+
+                            presencaService = Utils.getPresencaService();
+
+                            Call<Presenca> call = presencaService.addPresenca(presenca);
+                            call.enqueue(new Callback<Presenca>() {
+                                @Override
+                                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Salvou ", Toast.LENGTH_LONG).show();
+                                        dialog.dismiss();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Presenca> call, Throwable t) {
+                                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+//                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+//                        startActivityForResult(myIntent, 0);
+                                }
+
+
+                            });
                             dialog.dismiss();
                         }
                     });
@@ -90,11 +133,14 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                         }
                     });
 
-                    CheckBox checkBoxStatus = (CheckBox) dialog.findViewById(R.id.checkBoxAtivo);
+
+
+
 
                     dialog.show();
                 }
 
+                // Chama o EndPoint de novo Aluno
                 else if(itemPosition ==1)
                 {
                     final Dialog dialog = new Dialog(ListaOpcoesActivity.this);
@@ -151,6 +197,7 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                     dialog.show();
                 }
 
+                // Chama o EndPoint de Presença
                 else if(itemPosition ==2)
                 {
 

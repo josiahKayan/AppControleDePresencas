@@ -31,11 +31,6 @@ public class Usuario {
         this.Senha = senha;
     }
 
-    public Usuario(String email, String senha, int perfil) {
-        this.Email = email;
-        this.Senha = senha;
-        this.Perfil = perfil;
-    }
 
 //    public String getPerfil() {
 //        return perfil;

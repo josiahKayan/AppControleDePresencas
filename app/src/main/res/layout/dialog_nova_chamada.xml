@@ -23,7 +23,7 @@
                 android:orientation="horizontal"></LinearLayout>
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBoxNovaChamada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ativo" />
