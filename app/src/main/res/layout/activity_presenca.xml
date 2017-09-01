@@ -6,10 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.ljosias.appcontroledepresencas.PresencaActivity">
 
-    <ListView
-        android:id="@+id/listViewPresenca"
+    <ExpandableListView
+        android:id="@+id/expandableListPresenca"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
+        android:layout_height="match_parent" />
 </LinearLayout>

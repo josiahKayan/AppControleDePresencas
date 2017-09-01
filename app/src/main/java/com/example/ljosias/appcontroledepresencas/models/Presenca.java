@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Presenca {
 
+
+
     @SerializedName("PresencaId")
     @Expose
     public int presencaId ;
@@ -49,5 +51,13 @@ public class Presenca {
     @SerializedName("TurmaId")
     @Expose
     public int turmaId ;
-    
+
+
+    public Presenca(int dia, int ano){
+        this.dia = dia;
+        this.ano = ano;
+    }
+
+    public Presenca(){}
+
 }
