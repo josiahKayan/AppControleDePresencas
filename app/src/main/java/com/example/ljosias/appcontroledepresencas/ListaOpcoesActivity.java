@@ -134,9 +134,6 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                     });
 
 
-
-
-
                     dialog.show();
                 }
 
@@ -157,30 +154,37 @@ public class ListaOpcoesActivity extends AppCompatActivity {
 
                             ITurmaService turmaService;
 
+
+                            int turmaId = turma.turmaId;
+
+                            int alunoId = Integer.parseInt(editTextNovoAlunoMatricula.getText().toString());
+
                             turmaService = Utils.getTurmaService();
-
-                            Call<Log> call = turmaService.adicionaAlunoATurma(turma.turmaId,Integer.parseInt(editTextNovoAlunoMatricula.getText().toString()));
-
-                            call.enqueue(new Callback<Log>() {
-                                @Override
-                                public void onResponse(Call<Log> call, Response<Log> response) {
-                                    if (response.isSuccessful()) {
-                                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-                                        Toast.makeText(getApplicationContext(), "Salvou ", Toast.LENGTH_LONG).show();
-                                        startActivityForResult(myIntent, 0);
+                            try {
+                                Call<Log> call = turmaService.adicionaAlunoATurma(2, 1);
+                                call.enqueue(new Callback<Log>() {
+                                    @Override
+                                    public void onResponse(Call<Log> call, Response<Log> response) {
+                                        if (response.isSuccessful()) {
+                                            Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+                                            Toast.makeText(getApplicationContext(), "Salvou ", Toast.LENGTH_LONG).show();
+                                            startActivityForResult(myIntent, 0);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<Log> call, Throwable t) {
-                                    Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                    @Override
+                                    public void onFailure(Call<Log> call, Throwable t) {
+                                        Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_LONG).show();
 //                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
 //                        startActivityForResult(myIntent, 0);
-                                }
+                                    }
 
 
-                            });
-
+                                });
+                            }catch (Exception e)
+                            {
+                                System.out.println(e.getMessage());
+                            }
                             dialog.dismiss();
                         }
                     });
@@ -203,7 +207,6 @@ public class ListaOpcoesActivity extends AppCompatActivity {
 
                     Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
                     startActivityForResult(myIntent, 0);
-
 
                 }
 
