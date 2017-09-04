@@ -205,9 +205,16 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                 else if(itemPosition ==2)
                 {
 
-                    Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
-                    startActivityForResult(myIntent, 0);
+                    if(turma != null){
+                        Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
+                        myIntent.putExtra("turma", new Gson().toJson(turma));
+                        startActivityForResult(myIntent, 0);
+                    }
+                    else {
 
+                        Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
+                        startActivityForResult(myIntent, 0);
+                    }
                 }
 
                 // ListView Clicked item value

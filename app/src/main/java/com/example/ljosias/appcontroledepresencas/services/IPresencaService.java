@@ -22,6 +22,9 @@ public interface IPresencaService {
     @GET("presenca/presenca")
     Call<List<Presenca>> getPresencas( );
 
+    @GET("presenca/turma/{turmaId}")
+    Call<List<Presenca>> getPresencasPelaTurma( @Path("turmaId") int turmaId  );
+
     @GET("presenca/{presencaId}")
     Call<Presenca> getPresencaPeloId(@Path("presencaId") int presencaId );
 

@@ -92,7 +92,9 @@ public class ChamadaAdapter extends BaseExpandableListAdapter {
         TextView tvQtde = (TextView) convertView.findViewById(R.id.tvQtde);
 
         tvGrupo.setText((String) getGroup(groupPosition));
-        tvQtde.setText(String.valueOf(getChildrenCount(groupPosition)));
+        tvQtde.setText("2017");
+
+//        tvQtde.setText(String.valueOf(getChildrenCount(groupPosition)));
 
         return convertView;
     }
@@ -112,7 +114,7 @@ public class ChamadaAdapter extends BaseExpandableListAdapter {
 
         Presenca presenca = (Presenca) getChild(groupPosition, childPosition);
         tvItem.setText(""+presenca.dia);
-        tvValor.setText(""+presenca.ano);
+        tvValor.setText(""+presenca.mes);
 
         return convertView;
     }

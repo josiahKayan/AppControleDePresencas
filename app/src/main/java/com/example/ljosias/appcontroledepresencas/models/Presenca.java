@@ -58,6 +58,12 @@ public class Presenca {
         this.ano = ano;
     }
 
+    public Presenca(int dia,int mes, int ano){
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+    }
+
     public Presenca(){}
 
 }
