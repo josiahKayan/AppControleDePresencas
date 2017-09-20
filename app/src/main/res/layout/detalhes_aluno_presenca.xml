@@ -21,7 +21,7 @@
             android:id="@+id/textViewPresencaNomeAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Josias" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:id="@+id/textViewPresencaNomeCompletoAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Josias Kayan" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,13 +49,13 @@
             android:id="@+id/textView100"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Horário de Chegada" />
+            android:text="Data de Nascimento" />
 
         <TextView
-            android:id="@+id/textViewHoraChegada"
+            android:id="@+id/textViewDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="10:00" />
+             />
 
 
     </LinearLayout>

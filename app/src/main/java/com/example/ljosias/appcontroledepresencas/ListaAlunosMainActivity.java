@@ -10,13 +10,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ljosias.appcontroledepresencas.models.Aluno;
+import com.example.ljosias.appcontroledepresencas.models.Presenca;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class ListaAlunosMainActivity extends AppCompatActivity {
 
     private ListView listView;
     private ArrayList<String> settingsArrayListAdapter;
-
+    private Presenca presenca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +31,19 @@ public class ListaAlunosMainActivity extends AppCompatActivity {
 
         settingsArrayListAdapter = new ArrayList<>();
 
-        settingsArrayListAdapter.add("Josias Kayan");
-        settingsArrayListAdapter.add("Sammya Oliveira");
-        settingsArrayListAdapter.add("Ismael Ferreira");
-        settingsArrayListAdapter.add("Patrícia Franco");
+
+
+        String jsonMyObject = "";
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonMyObject = extras.getString("presenca");
+            presenca = new Gson().fromJson(jsonMyObject, Presenca.class);
+        }
+
+        for (Aluno aluno : presenca.listaAlunos) {
+            settingsArrayListAdapter.add(aluno.nome);
+        }
+
 
 
         listView.setAdapter(new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, settingsArrayListAdapter));
@@ -48,8 +61,13 @@ public class ListaAlunosMainActivity extends AppCompatActivity {
 
 
                 TextView nomeTextView = (TextView) dialog.findViewById(R.id.textViewPresencaNomeAluno);
+                nomeTextView.setText(presenca.listaAlunos.get(itemPosition).nome);
                 TextView nomeCompletoTextView = (TextView) dialog.findViewById(R.id.textViewPresencaNomeCompletoAluno);
-                TextView horaChegadaTextView = (TextView) dialog.findViewById(R.id.textViewHoraChegada);
+                nomeCompletoTextView.setText(presenca.listaAlunos.get(itemPosition).nomeCompleto);
+
+                TextView horaChegadaTextView = (TextView) dialog.findViewById(R.id.textViewDataNascimento);
+                horaChegadaTextView.setText(presenca.listaAlunos.get(itemPosition).dataNascimento);
+
                 TextView nTextView = (TextView) dialog.findViewById(R.id.textView102);
                 TextView nCTextView = (TextView) dialog.findViewById(R.id.textView101);
                 TextView hCTextView = (TextView) dialog.findViewById(R.id.textView100);

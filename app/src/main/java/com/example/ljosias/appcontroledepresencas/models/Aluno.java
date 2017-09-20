@@ -59,4 +59,10 @@ public class Aluno {
     @Expose
     public String idade ;
 
+    /// <summary>
+    /// Idade de uma pessoas
+    /// </summary>
+    @SerializedName("Presenca")
+    @Expose
+    public List<Presenca> listaPresenca ;
 }

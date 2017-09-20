@@ -52,6 +52,9 @@ public class Presenca {
     @Expose
     public int turmaId ;
 
+    @SerializedName("Alunos")
+    @Expose
+    public List<Aluno> listaAlunos ;
 
     public Presenca(int dia, int ano){
         this.dia = dia;
