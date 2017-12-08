@@ -25,6 +25,9 @@ public class Curso {
     @Expose
     public boolean ativo ;
 
+
+
+
     public Curso(){};
 
     public  Curso(int cursoId , String nome, String descricao, boolean ativo){

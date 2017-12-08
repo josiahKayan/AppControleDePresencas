@@ -49,39 +49,46 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textViewTDataInicial"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Data Inicial"
-                    tools:text="Data Inicial" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editTexttextViewTDataInicial"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    <TextView
+                        android:id="@+id/textViewTDataInicial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Data Inicial"
+                        tools:text="Data Inicial" />
 
-                <TextView
-                    android:id="@+id/textViewTDataFinal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Data Final"
-                    tools:text="Data Final" />
+                    <EditText
+                        android:id="@+id/editTexttextViewTDataInicial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="date" />
 
-                <EditText
-                    android:id="@+id/editTextTDataFinal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    <TextView
+                        android:id="@+id/textViewTDataFinal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Data Final"
+                        tools:text="Data Final" />
+
+                    <EditText
+                        android:id="@+id/editTextTDataFinal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="date" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -111,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="time" />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -127,7 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="time" />
 
             </LinearLayout>
 
@@ -155,7 +162,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="30dp"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
                 tools:layout_editor_absoluteX="8dp"
@@ -166,27 +178,31 @@
                     android:id="@+id/buttonApagarTurma"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Deletar"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     tools:text="Deletar" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.13" />
 
                 <Button
                     android:id="@+id/buttonSalvarTurma"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Salvar"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     tools:text="Salvar" />
 
             </LinearLayout>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fabNovaTurma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_dialog_email" />
-
-
 
 
         </LinearLayout>

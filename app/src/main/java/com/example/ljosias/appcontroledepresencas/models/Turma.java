@@ -42,6 +42,17 @@ public class Turma {
     @SerializedName("Curso")
     @Expose
     public  Curso curso ;
+
+    @SerializedName("ProfessorId")
+    @Expose
+    public int professorId ;
+
+
+    @SerializedName("CursoId")
+    @Expose
+    public  int cursoId ;
+
+
     /// <summary>
     /// Lista de Alunos
     /// </summary>

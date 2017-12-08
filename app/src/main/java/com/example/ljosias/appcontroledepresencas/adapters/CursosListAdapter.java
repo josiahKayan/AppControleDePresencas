@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class CursosListAdapter extends ArrayAdapter<Curso>  {
     Context cursoContext ;
     TextView textViewNome, textViewDescricao;
     CheckBox checkBoxAtivo ;
+    TextView dataInicial , dataFinal ;
 
     public CursosListAdapter(ArrayList<Curso> cursoArrayAdapter, Context context) {
         super(context, R.layout.cursos_item,cursoArrayAdapter);
@@ -46,12 +48,18 @@ public class CursosListAdapter extends ArrayAdapter<Curso>  {
             textViewNome = (TextView) convertView.findViewById(R.id.textViewNomeCurso);
             textViewDescricao = (TextView) convertView.findViewById(R.id.textViewDescricao);
             checkBoxAtivo = (CheckBox) convertView.findViewById(R.id.checkBoxAtivo);
+//            dataInicial = (TextView) convertView.findViewById(R.id.editTextCursoDataInicial);
+//            dataFinal = (TextView) convertView.findViewById(R.id.editTextCursoDataFinal);
+
 
         // Populate the data into the template view using the data object
         textViewNome.setText("Curso: "+curso.getnome());
         textViewDescricao.setText("Descrição:"+curso.getdescricao());
         checkBoxAtivo.setChecked(curso.getativo());
         checkBoxAtivo.setEnabled(false);
+//        dataInicial.setText(curso.dataInicial);
+//        dataFinal.setText(curso.dataFinal);
+
         // Return the completed view to render on screen
         return convertView;
     }

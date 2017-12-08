@@ -35,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("Cotrole de Presenças");
+
         button = (Button) findViewById(buttonApi);
 
         editTextLogin = (EditText) findViewById(R.id.editTextLogin);
@@ -45,8 +47,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 email = editTextLogin.getText().toString();
                 password = editTextSenha.getText().toString();
-//                email = "jkayanlima@gmail.com";
-//                password = "123";
 
                 Logar();
             }
@@ -55,59 +55,58 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void Logar() {
-//        Professor Professoreselected = professorArrayListListAdapter.get(position);
-//        Intent myIntent = new Intent(getBaseContext(), ProfessorMainActivity.class);
-//        myIntent.putExtra("professor", new Gson().toJson(Professoreselected));
-//        startActivityForResult(myIntent, 0);
-
 
         IUsuarioService usuarioService;
 
         usuarioService = Utils.getUsuarioService();
 
         final Usuario usuario = new Usuario(email, password);
-//        usuario.Email =  "jkayanlima@gmail.com" ;
-//        usuario.Senha =  "123" ;
 
-        Call<Log> call = usuarioService.login(usuario);
-                call.enqueue(new Callback<Log>() {
+        Call<Usuario> call = usuarioService.login(usuario);
+                call.enqueue(new Callback<Usuario>() {
                     @Override
-                    public void onResponse(Call<Log> call, Response<Log> response) {
+                    public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                         if (response.isSuccessful()) {
 
                             if(response.body() == null) {
                                 Toast.makeText(getApplicationContext(), "Error:", Toast.LENGTH_LONG).show();
                             }
-                            Intent myIntent = new Intent(getBaseContext(), ProfessorMainActivity.class);
-                            myIntent.putExtra("usuario", new Gson().toJson(usuario));
-                            Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-                            startActivityForResult(myIntent, 0);
+//                            Intent myIntent = new Intent(getBaseContext(), ProfessorMainActivity.class);
+//                            myIntent.putExtra("usuario", new Gson().toJson(usuario));
+//                            Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+//                            startActivityForResult(myIntent, 0);
 
-//                            else {
-//                                if (response.body().perfil== 0) {
-//                                    Intent myIntent = new Intent(getBaseContext(), AlunoMainActivity.class);
+                            else {
+                                if (response.body().Perfil == 0  )
+                                {
+                                    Intent myIntent = new Intent(getBaseContext(), AlunoMainActivity.class);
+                                    myIntent.putExtra("usuario", new Gson().toJson(usuario));
+                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+                                    startActivityForResult(myIntent, 0);
+                                }
+
+                                if (response.body().Perfil == 1 )
+                                {
+                                    Intent myIntent = new Intent(getBaseContext(), ProfessorMainActivity.class);
+                                    myIntent.putExtra("usuario", new Gson().toJson(usuario));
 //                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
-//
-//                                if (response.body().perfil ==1) {
-//                                    Intent myIntent = new Intent(getBaseContext(), ProfessorLoginMainActivity.class);
-//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
-//
-//                                if (response.body().perfil ==2) {
-//                                    Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-//                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
-//                                    startActivityForResult(myIntent, 0);
-//                                }
-//                            }
+                                    startActivityForResult(myIntent, 0);
+                                }
+
+                                if (response.body().Perfil == 2)
+                                {
+                                    Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
+                                    myIntent.putExtra("usuario", new Gson().toJson(usuario));
+                                    Toast.makeText(getApplicationContext(), "Bem-Vindo " + email, Toast.LENGTH_LONG).show();
+                                    startActivityForResult(myIntent, 0);
+                                }
+                            }
 
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Log> call, Throwable t) {
+                    public void onFailure(Call<Usuario> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), "Error:"+t.getMessage(), Toast.LENGTH_LONG).show();
 //                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
 //                        startActivityForResult(myIntent, 0);

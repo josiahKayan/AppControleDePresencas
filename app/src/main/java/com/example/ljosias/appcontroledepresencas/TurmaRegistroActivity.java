@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.log.Log;
+import com.example.ljosias.appcontroledepresencas.models.Curso;
 import com.example.ljosias.appcontroledepresencas.models.Professor;
 import com.example.ljosias.appcontroledepresencas.models.Turma;
 import com.example.ljosias.appcontroledepresencas.models.Usuario;
@@ -20,27 +22,34 @@ import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TurmaRegistroActivity extends AppCompatActivity {
+import static java.lang.Thread.sleep;
 
+public class TurmaRegistroActivity extends AppCompatActivity {
 
     EditText EditTNome,EditTHoraInicial, EditTHoraFinal,EditTDataInicial,EditTDataFinal;
     Button buttonSalvar,buttonDelete;
     Turma turma;
     int id ;
     Spinner turmaProfessorSpinner;
-
+    List<Professor> listProfessor = null;
+    int positionProfessor ;
+    Curso curso = null ;
+    String jsonMyObject = null;
+    Call<List<Professor>> call = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turma_registro);
-
+        setTitle("Adicionar Nova Turma");
         EditTNome = (EditText) findViewById(R.id.editTextTNome);
         EditTHoraInicial= (EditText) findViewById(R.id.editTextTHoraInicial);
         EditTHoraFinal = (EditText) findViewById(R.id.editTextTHoraFinal);
@@ -51,32 +60,87 @@ public class TurmaRegistroActivity extends AppCompatActivity {
         turmaProfessorSpinner = (Spinner) findViewById(R.id.spinnerTProfessor);
 
 
-        String jsonMyObject = "";
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             jsonMyObject = extras.getString("turma");
-            turma = new Gson().fromJson(jsonMyObject, Turma.class);
-            Toast.makeText(getApplicationContext(), "" + turma.nomeTurma, Toast.LENGTH_LONG).show();
-            EditTNome.setText(turma.nomeTurma);
-            EditTHoraInicial.setText(turma.horaInicial);
-            EditTHoraFinal.setText(turma.horaFinal);
-            EditTDataInicial.setText(turma.dataInicio);
-            EditTDataFinal.setText(turma.dataTermino);
-            id = turma.turmaId;
+            if(jsonMyObject != null) {
+                turma = new Gson().fromJson(jsonMyObject, Turma.class);
+                Toast.makeText(getApplicationContext(), "" + turma.nomeTurma, Toast.LENGTH_LONG).show();
+                EditTNome.setText(turma.nomeTurma);
+                EditTHoraInicial.setText(turma.horaInicial);
+                EditTHoraFinal.setText(turma.horaFinal);
+                EditTDataInicial.setText(turma.dataInicio);
+                EditTDataFinal.setText(turma.dataTermino);
+                id = turma.turmaId;
+            }
         }
 
+        curso = new Gson().fromJson(extras.getString("curso"), Curso.class);
+
+        final ArrayList<String> professorList = new ArrayList<>();
+
+        new Thread(new Runnable()
+        {
+            public void run() {
+                IProfessorService professorService;
+                professorService = Utils.getProfessorService();
+
+                if (jsonMyObject != null){
+
+                    call = professorService.getProfessores();
+                }
+                else{
+                    call = professorService.getProfessores();
+                }
+
+                try {
+                    listProfessor = call.execute().body();
+
+//                    listProfessor.sort(  p -> p.professorId == turma.professorId );
+//                    listProfessor.sort((p1) -> p1.professorId == turma.professorId);
+//                    Collections.sort(listProfessor, ( p) -> p.professorId == turma.professorId);
+
+                    if ( listProfessor != null ){
+                        for ( Professor p : listProfessor ) {
+                            professorList.add(p.nomeCompleto);
+
+                        }
 
 
-        List<String> listTurmas = new ArrayList<>();
+                    }
+                } catch (Exception e) {
+                    e.getMessage();
+                }
+            }
+        }).start();
 
-        listTurmas.add("Sammya");
-        listTurmas.add("Josias");
-        listTurmas.add("Leonardo");
+        try {
+            sleep(1200);
+        } catch (InterruptedException e) {
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listTurmas);
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, professorList);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         turmaProfessorSpinner.setAdapter(spinnerArrayAdapter);
+
+        turmaProfessorSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String nsvNome = turmaProfessorSpinner.getSelectedItem().toString();
+                Toast.makeText(getBaseContext(), nsvNome, Toast.LENGTH_LONG).show();
+                positionProfessor =  turmaProfessorSpinner.getSelectedItemPosition() ;
+            }
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+
+        if (  jsonMyObject == null  )
+        {
+                buttonDelete.setEnabled(false);
+        }
 
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,8 +167,7 @@ public class TurmaRegistroActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<Log> call, Throwable t) {
                         Toast.makeText(getBaseContext(),"ERRo "+ t.getMessage(), Toast.LENGTH_LONG).show();
-//                        Intent myIntent = new Intent(getBaseContext(), MainUsuarioActivity.class);
-//                        startActivityForResult(myIntent, 0);
+
                     }
 
 
@@ -126,7 +189,8 @@ public class TurmaRegistroActivity extends AppCompatActivity {
                 turma.dataTermino = EditTDataFinal.getText().toString();
                 turma.horaInicial = EditTHoraInicial.getText().toString();
                 turma.horaFinal = EditTHoraFinal.getText().toString();
-
+                turma.professor =  listProfessor.get(positionProfessor);
+                turma.curso = curso ;
 
                 ITurmaService turmaService;
 

@@ -76,7 +76,7 @@ public class ProfessorPerfilFragment extends Fragment {
                 IProfessorService professoreservice;
                 professoreservice = Utils.getProfessorService();
                 //Adicionar um EndPoint para capturar o Id do professor
-                Call<Professor> call = professoreservice.getProfessorPeloId(2);
+                Call<Professor> call = professoreservice.getProfessorPeloId(8);
                 professor = null;
                 try {
                     professor = call.execute().body();

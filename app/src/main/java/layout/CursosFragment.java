@@ -64,7 +64,7 @@ public class CursosFragment extends Fragment {
         }).start();
 
         try {
-            sleep(1000);
+            sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -27,7 +27,7 @@ public interface IUsuarioService {
     List<Call<Usuario>> getUsuarios( );
 
     @POST("login/logar")
-    Call<Log> login(@Body Usuario usuario );
+    Call<Usuario> login(@Body Usuario usuario );
 
 
 

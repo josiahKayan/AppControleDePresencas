@@ -10,118 +10,212 @@
     android:orientation="vertical"
     tools:context="com.example.ljosias.appcontroledepresencas.CursoCrudActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome"
-            tools:text="Nome" />
-
-        <EditText
-            android:id="@+id/editTextNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descrição"
-            tools:text="Descrição" />
-
-        <EditText
-            android:id="@+id/editTextDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/checkBoxAtivo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ativo" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.44"
-            android:text="Turmas"
-            tools:text="Turmas" />
-
-        <Spinner
-            android:id="@+id/spinnerTurmas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:spinnerMode="dialog" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp">
-
-
-            <Button
-                android:id="@+id/buttonApagarCurso"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Deletar"
-                tools:text="Deletar" />
+                android:layout_height="466dp"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/buttonSalvarCurso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Salvar"
-                tools:text="Salvar" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nome"
+                    tools:text="Nome" />
 
+                <EditText
+                    android:id="@+id/editTextNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descrição"
+                    tools:text="Descrição" />
+
+                <EditText
+                    android:id="@+id/editTextDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/textCursoDataInicial"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Data Inicial"-->
+                <!--tools:text="Data Inicial" />-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/editCursoDataInicial"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ems="10"-->
+                <!--android:inputType="textPersonName" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/textView15"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Data Final"-->
+                <!--tools:text="Data Final" />-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/editCursoDataFinal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ems="10"-->
+                <!--android:inputType="textPersonName" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkBoxAtivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ativo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Turmas"
+                    tools:text="Turmas" />
+
+
+                <Spinner
+                    android:id="@+id/spinnerTurmas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.28" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="107dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <Button
+                        android:id="@+id/buttonTurmaDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.29"
+                        android:background="@color/colorPrimary"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="Detalhes da Turma"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="                        " />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight="1"
+                                android:text="Nova Turma" />
+
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/floatingActionButtonCursoAdd"
+                                android:layout_width="74dp"
+                                android:layout_height="73dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignStart="@+id/textView17"
+                                android:layout_below="@+id/textView17"
+                                android:layout_gravity="bottom|end"
+                                android:layout_marginLeft="200dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:src="@android:drawable/ic_input_add" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp">
+
+
+                    <Button
+                        android:id="@+id/buttonApagarCurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="Deletar"
+                        android:textColor="@color/colorPrimary"
+                        tools:text="Deletar" />
+
+                    <Button
+                        android:id="@+id/buttonSalvarCurso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="Salvar"
+                        android:textColor="@color/colorPrimary"
+                        tools:text="Salvar" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email" />
-
-
-    </LinearLayout>
+    </ScrollView>
 
 
 </android.widget.LinearLayout>
