@@ -22,6 +22,11 @@ public interface IProfessorService {
     @GET("professor/professores")
     Call<List<Professor>> getProfessores( );
 
+
+
+    @GET("professor/professores/ordenados/{professorId}")
+    Call<List<Professor>> getProfessoresOrdenado(@Path("professorId") int professorId );
+
     @GET("professor/{professorId}")
     Call<Professor> getProfessorPeloId(@Path("professorId") int professorId );
 

@@ -39,7 +39,7 @@ public class ListaOpcoesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_opcoes);
-
+        setTitle("Turmas Ativas");
         String jsonMyObject = "";
         Bundle extras = getIntent().getExtras();
         if (extras != null)
@@ -215,6 +215,22 @@ public class ListaOpcoesActivity extends AppCompatActivity {
                         Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
                         startActivityForResult(myIntent, 0);
                     }
+                }
+
+                // Chama o EndPoint de Presença
+                else if(itemPosition ==3)
+                {
+
+//                    if(turma != null){
+//                        Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
+//                        myIntent.putExtra("turma", new Gson().toJson(turma));
+//                        startActivityForResult(myIntent, 0);
+//                    }
+//                    else {
+//
+//                        Intent myIntent = new Intent(getBaseContext(), PresencaActivity.class);
+//                        startActivityForResult(myIntent, 0);
+//                    }
                 }
 
                 // ListView Clicked item value

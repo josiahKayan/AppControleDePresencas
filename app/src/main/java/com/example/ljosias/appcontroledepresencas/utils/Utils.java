@@ -5,6 +5,7 @@ import com.example.ljosias.appcontroledepresencas.services.IAlunoService;
 import com.example.ljosias.appcontroledepresencas.services.ICursoService;
 import com.example.ljosias.appcontroledepresencas.services.IPresencaService;
 import com.example.ljosias.appcontroledepresencas.services.IProfessorService;
+import com.example.ljosias.appcontroledepresencas.services.ITagService;
 import com.example.ljosias.appcontroledepresencas.services.ITurmaService;
 import com.example.ljosias.appcontroledepresencas.services.IUsuarioService;
 
@@ -19,6 +20,11 @@ public class Utils {
     public static IUsuarioService getUsuarioService( ) {
 
         return RetrofitClient.getClient().create(IUsuarioService.class);
+    }
+
+    public static ITagService getTagService( ) {
+
+        return RetrofitClient.getClient().create(ITagService.class);
     }
 
     public static ICursoService getCursoService( ) {

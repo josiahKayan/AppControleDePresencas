@@ -44,6 +44,7 @@ public class TurmaRegistroActivity extends AppCompatActivity {
     Curso curso = null ;
     String jsonMyObject = null;
     Call<List<Professor>> call = null;
+//    ArrayList<String> professorList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,9 @@ public class TurmaRegistroActivity extends AppCompatActivity {
         turmaProfessorSpinner = (Spinner) findViewById(R.id.spinnerTProfessor);
 
 
-        Bundle extras = getIntent().getExtras();
+        final ArrayList<String> professorList = new ArrayList<>();
+
+        final Bundle extras = getIntent().getExtras();
         if (extras != null) {
             jsonMyObject = extras.getString("turma");
             if(jsonMyObject != null) {
@@ -77,7 +80,6 @@ public class TurmaRegistroActivity extends AppCompatActivity {
 
         curso = new Gson().fromJson(extras.getString("curso"), Curso.class);
 
-        final ArrayList<String> professorList = new ArrayList<>();
 
         new Thread(new Runnable()
         {
@@ -87,7 +89,7 @@ public class TurmaRegistroActivity extends AppCompatActivity {
 
                 if (jsonMyObject != null){
 
-                    call = professorService.getProfessores();
+                    call = professorService.getProfessoresOrdenado(turma.professor.professorId);
                 }
                 else{
                     call = professorService.getProfessores();
@@ -96,15 +98,12 @@ public class TurmaRegistroActivity extends AppCompatActivity {
                 try {
                     listProfessor = call.execute().body();
 
-//                    listProfessor.sort(  p -> p.professorId == turma.professorId );
-//                    listProfessor.sort((p1) -> p1.professorId == turma.professorId);
-//                    Collections.sort(listProfessor, ( p) -> p.professorId == turma.professorId);
-
                     if ( listProfessor != null ){
                         for ( Professor p : listProfessor ) {
                             professorList.add(p.nomeCompleto);
 
                         }
+
 
 
                     }
@@ -120,6 +119,8 @@ public class TurmaRegistroActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 
         }
+
+//        professorList.add("Teste");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, professorList);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;

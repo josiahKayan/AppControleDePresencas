@@ -25,7 +25,7 @@ public class ListaAlunosMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setTitle("Lista de Alunos");
         setContentView(R.layout.activity_lista_alunos_main);
         listView = (ListView) findViewById(R.id.listViewAlunosPresenca);
 

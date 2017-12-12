@@ -1,5 +1,6 @@
 package com.example.ljosias.appcontroledepresencas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -27,6 +28,7 @@ public class ProfessorMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professor_main);
+        setTitle("Menu de Professor");
 
         Usuario usuario = null;
 
@@ -35,10 +37,18 @@ public class ProfessorMainActivity extends AppCompatActivity {
         if (extras != null) {
             jsonMyObject = extras.getString("usuario");
             usuario = new Gson().fromJson(jsonMyObject, Usuario.class);
-            id = usuario.UsuarioId;
+            id = 10;
+//            id = usuario.UsuarioId;
             Toast.makeText(getApplicationContext(), "" + usuario.Email, Toast.LENGTH_LONG).show();
 
         }
+
+        final Bundle bundle = new Bundle();
+        bundle.putInt("id", id );
+//        FragmentClass fragInfo = new FragmentClass();
+//        fragInfo.setArguments(bundle);
+//        transaction.replace(R.id.fragment_single, fragInfo);
+//        transaction.commit();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation_professor);
 
@@ -49,16 +59,23 @@ public class ProfessorMainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.navigation_home:
-                        selectedFragment = ProfessorPerfilFragment.newInstance();
+                        ProfessorPerfilFragment pp = ProfessorPerfilFragment.newInstance();
+                        pp.setArguments(bundle);
+                        selectedFragment = pp;
+
                         break;
                     case R.id.navigation_dashboard:
-                        selectedFragment = ProfessorTurmasFragment.newInstance();
+                        ProfessorTurmasFragment pt = new ProfessorTurmasFragment();
+                        pt.setArguments(bundle);
+                        selectedFragment = pt;
                         break;
                     default:
                         break;
                 }
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
                 transaction.replace(R.id.content, selectedFragment);
+
                 transaction.commit();
                 return true;
             }
@@ -66,7 +83,9 @@ public class ProfessorMainActivity extends AppCompatActivity {
 
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content, ProfessorPerfilFragment.newInstance());
+        ProfessorPerfilFragment pp = new ProfessorPerfilFragment();
+        pp.setArguments(bundle);
+        transaction.replace(R.id.content, pp);
         transaction.commit();
 
     }

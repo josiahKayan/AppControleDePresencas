@@ -45,7 +45,9 @@
                     android:id="@+id/buttonNovoAlunoCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar" />
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Cancelar"
+                    android:textColor="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -58,7 +60,9 @@
                     android:id="@+id/buttonNovoAlunoSalvar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Salvar" />
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Salvar"
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

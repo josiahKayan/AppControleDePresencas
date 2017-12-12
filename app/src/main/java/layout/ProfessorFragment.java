@@ -44,11 +44,11 @@ public class ProfessorFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_professor, container, false);
 
+//        setTitle("Adicionar Novo Curso");
         listView = (ListView) rootView.findViewById(R.id.listViewProfessores);
 
 
         professorArrayListListAdapter = new ArrayList<>();
-
 
 
         new Thread(new Runnable()

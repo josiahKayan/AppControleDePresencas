@@ -25,6 +25,10 @@ public interface ITurmaService {
     @GET("turma/turmas")
     Call<List<Turma>> getTurmas( );
 
+    @GET("turma/turmas/{professorId}")
+    Call<List<Turma>> getTurmaPorProfessorId( @Path("professorId") int professorId);
+
+
     @GET("turma/cursos/{cursoId}")
     Call<List<Turma>> getTurmasPeloId(@Path("cursoId") int cursoId );
 

@@ -38,6 +38,7 @@ public class ProfessorPerfilFragment extends Fragment {
     Spinner spinnerListaTurmas ;
     Button buttonSalvar;
     Professor professor = null;
+    int id = 0;
 
     public static ProfessorPerfilFragment newInstance() {
         ProfessorPerfilFragment fragment = new ProfessorPerfilFragment();
@@ -52,6 +53,9 @@ public class ProfessorPerfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        int id = arguments.getInt("id");
+        this.id = id ;
     }
 
 
@@ -76,32 +80,10 @@ public class ProfessorPerfilFragment extends Fragment {
                 IProfessorService professoreservice;
                 professoreservice = Utils.getProfessorService();
                 //Adicionar um EndPoint para capturar o Id do professor
-                Call<Professor> call = professoreservice.getProfessorPeloId(8);
+                Call<Professor> call = professoreservice.getProfessorPeloId(id);
                 professor = null;
                 try {
                     professor = call.execute().body();
-                    if ( professor != null )
-                    {
-                        editTextNome.setText(professor.nome);
-                        editTextNomeCompleto.setText(professor.nomeCompleto);
-                        editTextIdade.setText(professor.idade);
-                        editTextUsuario.setText(professor.usuario.Email);
-                        editTextDataNascimento.setText(professor.dataNascimento);
-
-                        List<String> listTurmas = new ArrayList<>();
-
-                        for ( Turma turma  : professor.turmaLista )
-                        {
-                            listTurmas.add(turma.nomeTurma);
-                        }
-
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, listTurmas);
-                        ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
-                        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                        spinnerListaTurmas.setAdapter(spinnerArrayAdapter);
-
-
-                    }
                 } catch (Exception e)
                 {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -117,6 +99,27 @@ public class ProfessorPerfilFragment extends Fragment {
         catch (Exception e)
         {
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        if ( professor != null ) {
+
+
+            editTextNome.setText(professor.nome);
+            editTextNomeCompleto.setText(professor.nomeCompleto);
+            editTextIdade.setText(professor.idade);
+            editTextUsuario.setText(professor.usuario.Email);
+            editTextDataNascimento.setText(professor.dataNascimento);
+
+            List<String> listTurmas = new ArrayList<>();
+
+            for (Turma turma : professor.turmaLista) {
+                listTurmas.add(turma.nomeTurma);
+            }
+
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, listTurmas);
+            ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+            spinnerListaTurmas.setAdapter(spinnerArrayAdapter);
         }
 
         buttonSalvar.setOnClickListener(new View.OnClickListener() {

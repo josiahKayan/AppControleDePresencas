@@ -50,10 +50,13 @@
             android:label="@string/title_activity_aluno_main" />
         <activity android:name=".PresencaActivity" />
         <activity android:name=".TurmaRegistroActivity" />
-
         <activity android:name=".ListaAlunosMainActivity" />
         <activity android:name=".ListaCursoTurmaActivity" />
-        <activity android:name=".ListaOpcoesActivity"></activity>
+        <activity android:name=".ListaOpcoesActivity" />
+        <activity
+            android:name=".ListaAlunos"
+            android:label="@string/title_activity_lista_alunos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

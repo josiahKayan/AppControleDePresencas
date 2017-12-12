@@ -143,14 +143,18 @@
                     android:id="@+id/buttonApagarAluno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Deletar"
+                    android:textColor="@color/colorPrimary"
                     tools:text="Deletar" />
 
                 <Button
                     android:id="@+id/buttonSalvarAluno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccent"
                     android:text="Salvar"
+                    android:textColor="@color/colorPrimary"
                     tools:text="Salvar" />
 
             </LinearLayout>

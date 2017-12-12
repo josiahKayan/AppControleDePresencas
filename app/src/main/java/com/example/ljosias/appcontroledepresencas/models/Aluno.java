@@ -21,6 +21,15 @@ public class Aluno {
     @SerializedName("Tag")
     @Expose
     public  Tag tag ;
+
+    /// <summary>
+    /// atributo da classe Tag
+    /// </summary>
+    @SerializedName("TagId")
+    @Expose
+    public  int tagId ;
+
+
     /// <summary>
     /// atributo da classe Usuario
     /// </summary>

@@ -12,10 +12,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ljosias.appcontroledepresencas.log.Log;
+import com.example.ljosias.appcontroledepresencas.models.Curso;
 import com.example.ljosias.appcontroledepresencas.models.Professor;
 import com.example.ljosias.appcontroledepresencas.models.Professor;
+import com.example.ljosias.appcontroledepresencas.models.Turma;
 import com.example.ljosias.appcontroledepresencas.models.Usuario;
 import com.example.ljosias.appcontroledepresencas.services.IProfessorService;
+import com.example.ljosias.appcontroledepresencas.services.ITurmaService;
 import com.example.ljosias.appcontroledepresencas.utils.Utils;
 import com.google.gson.Gson;
 
@@ -28,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.Thread.sleep;
+
 public class ProfessorRegisterActivity extends AppCompatActivity {
 
     EditText EditTextNome,EditTextNomeCompleto, EditTextIdade,EditTextName, EditTextPasword,EditTextDataNascimento;
@@ -35,11 +40,15 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
     Professor professor;
     int id ;
     Spinner turmasSpinner;
+    Call<List<Turma>> call = null;
+    List<Turma> lisTurmas = null;
+    String jsonMyObject = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professor_register);
+        setTitle("Registro de Professor");
 
         EditTextNome = (EditText) findViewById(R.id.editTextNome);
         EditTextNomeCompleto= (EditText) findViewById(R.id.editTextNomeCompleto);
@@ -67,11 +76,50 @@ public class ProfessorRegisterActivity extends AppCompatActivity {
 
         List<String> listTurmas = new ArrayList<>();
 
-        listTurmas.add("VT1 - 01");
-        listTurmas.add("VT1 - 02");
-        listTurmas.add("VT2 - 02");
+        final ArrayList<String> turmaListAdapter = new ArrayList<>();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listTurmas);
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null) {
+//            jsonMyObject = extras.getString("curso");
+//            curso = new Gson().fromJson(jsonMyObject, Curso.class);
+//            Toast.makeText(getApplicationContext(), "" + curso.nome, Toast.LENGTH_LONG).show();
+//            editTextNome.setText(curso.nome);
+//            editTextDescricao.setText(curso.descricao);
+//            checkBoxAtivo.setChecked(curso.ativo);
+//            id = curso.cursoId;
+//
+//        }
+
+        new Thread(new Runnable()
+        {
+            public void run() {
+                ITurmaService turmaService;
+                turmaService = Utils.getTurmaService();
+
+               call = turmaService.getTurmaPorProfessorId(professor.professorId);
+
+                try {
+                    lisTurmas = call.execute().body();
+                    if ( lisTurmas != null ){
+                        for ( Turma p : lisTurmas ) {
+                            turmaListAdapter.add(p.nomeTurma);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.getMessage();
+                }
+            }
+        }).start();
+
+        try {
+            sleep(1200);
+        } catch (InterruptedException e) {
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
+
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, turmaListAdapter);
         ArrayAdapter<String> spinnerArrayAdapter = arrayAdapter;
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         turmasSpinner.setAdapter(spinnerArrayAdapter);

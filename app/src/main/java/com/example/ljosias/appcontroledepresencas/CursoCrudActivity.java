@@ -230,7 +230,7 @@ public class CursoCrudActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(getBaseContext(), TurmaRegistroActivity.class);
 
                 myIntent.putExtra("turma", new Gson().toJson(turmaAux));
-
+                myIntent.putExtra("curso", new Gson().toJson(curso));
                 startActivityForResult(myIntent, 0);
 
             }

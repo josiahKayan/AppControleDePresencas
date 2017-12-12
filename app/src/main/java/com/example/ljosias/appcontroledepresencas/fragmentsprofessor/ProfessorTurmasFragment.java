@@ -45,6 +45,7 @@ public class ProfessorTurmasFragment extends Fragment {
     private ListView listView;
     private ArrayList<String> settingsArrayListAdapter;
     Professor professor;
+    int id = 0;
 
     public static ProfessorTurmasFragment newInstance() {
         ProfessorTurmasFragment fragment = new ProfessorTurmasFragment();
@@ -54,6 +55,10 @@ public class ProfessorTurmasFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        int id = arguments.getInt("id");
+        this.id = id ;
+
     }
 
     @Override
@@ -70,23 +75,11 @@ public class ProfessorTurmasFragment extends Fragment {
                 IProfessorService professoreservice;
                 professoreservice = Utils.getProfessorService();
                 //Adicionar um EndPoint para capturar o Id do professor
-                Call<Professor> call = professoreservice.getProfessorPeloId(8);
+                Call<Professor> call = professoreservice.getProfessorPeloId(id);
                 professor = null;
                 try {
                     professor = call.execute().body();
-                    if ( professor != null )
-                    {
 
-                        List<String> listTurmas = new ArrayList<>();
-
-                        for ( Turma turma  : professor.turmaLista )
-                        {
-                            listTurmas.add(turma.nomeTurma);
-                        }
-
-                        listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, listTurmas));
-
-                    }
                 } catch (Exception e)
                 {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
@@ -104,6 +97,19 @@ public class ProfessorTurmasFragment extends Fragment {
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+        if ( professor != null )
+        {
+
+            List<String> listTurmas = new ArrayList<>();
+
+            for ( Turma turma  : professor.turmaLista )
+            {
+                listTurmas.add(turma.nomeTurma);
+            }
+
+            listView.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, listTurmas));
+
+        }
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

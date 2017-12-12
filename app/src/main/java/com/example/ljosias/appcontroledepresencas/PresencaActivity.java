@@ -42,7 +42,7 @@ public class PresencaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presenca);
-
+        setTitle("Lista de Presenças");
         String jsonMyObject = "";
         Bundle extras = getIntent().getExtras();
         if (extras != null)
