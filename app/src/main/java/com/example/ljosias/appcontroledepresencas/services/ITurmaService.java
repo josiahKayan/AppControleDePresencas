@@ -1,6 +1,7 @@
 package com.example.ljosias.appcontroledepresencas.services;
 
 import com.example.ljosias.appcontroledepresencas.log.Log;
+import com.example.ljosias.appcontroledepresencas.models.Aluno;
 import com.example.ljosias.appcontroledepresencas.models.Professor;
 import com.example.ljosias.appcontroledepresencas.models.Turma;
 
@@ -27,6 +28,9 @@ public interface ITurmaService {
 
     @GET("turma/turmas/{professorId}")
     Call<List<Turma>> getTurmaPorProfessorId( @Path("professorId") int professorId);
+
+    @GET("turma/alunos/{turmaId}")
+    Call<List<Aluno>> getAlunoPorTurmaId(@Path("turmaId") int turmaId);
 
 
     @GET("turma/cursos/{cursoId}")

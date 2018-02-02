@@ -53,10 +53,8 @@
         <activity android:name=".ListaAlunosMainActivity" />
         <activity android:name=".ListaCursoTurmaActivity" />
         <activity android:name=".ListaOpcoesActivity" />
-        <activity
-            android:name=".ListaAlunos"
-            android:label="@string/title_activity_lista_alunos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ListaAlunos" />
+        <activity android:name=".AlunoTurmaDetalhes"></activity>
     </application>
 
 </manifest>
